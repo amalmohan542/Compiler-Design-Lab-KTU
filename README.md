@@ -1,4 +1,4 @@
-# Compiler-Design-Lab-KTU
+# Compiler-Design-Lab-KTU-CSE
 ### Course Objectives:
 ##### * To implement the different Phases of compiler.
 ##### * To implement and test simple optimization techniques.
