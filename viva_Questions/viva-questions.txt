@@ -1,0 +1,11 @@
+1.Briefly explain phases in compilation?
+2.Why intermediate code generator?
+3.Symbol table and why it is used?
+4.compiler vs interpreter, tokens, syntax analyser?
+5.Lexime and token difference?
+6.Briefly explain working of lexical analyzer c program?
+7.Attribute values in token?
+8.Difference between syntax and semantic analysis?
+9.Extraction of tokens from  a given expression?
+
+
