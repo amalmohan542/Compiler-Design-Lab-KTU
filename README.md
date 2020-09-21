@@ -4,7 +4,8 @@
 ##### * To implement and test simple optimization techniques.
 ##### * To give exposure to compiler writing tools.
 
-### List of Exercises/Experiments :
+### List of Exercises/Experiments :  
+
 1. Design and implement a lexical analyzer for given language using C and the lexical analyzer
 should ignore redundant spaces, tabs and new lines.
 
