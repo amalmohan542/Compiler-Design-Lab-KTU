@@ -1,4 +1,4 @@
-# Compiler-Design-Lab-KTU-CSE
+# Compiler-Design-Lab-KTU-CSE  
 ### Course Objectives:
 ##### * To implement the different Phases of compiler.
 ##### * To implement and test simple optimization techniques.
@@ -44,3 +44,4 @@ d. Convert the BNF rules into YACC form and write code to generate abstract synt
 8086 assembly language instructions that can be assembled and run using an 8086 assembler.
 The target assembly instructions can be simple move, add, sub, jump etc.
 
+## -------------------------------------------------------------------------------------------------------------------------------------------------------------
