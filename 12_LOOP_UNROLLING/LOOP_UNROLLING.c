@@ -24,7 +24,7 @@ void main()
         default:
             printf("\n Wrong Choice\n");
         }
-        printf("\ndo you want to continue\n");
+        printf("\nDo you want to continue Press 1 ?\n");
         scanf("%d", &d);
     } while (d == 1);
 }
