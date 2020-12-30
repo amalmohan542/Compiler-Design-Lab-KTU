@@ -1,45 +1,199 @@
 #include <stdio.h>
+
 #include <string.h>
-char op[2], arg1[5], arg2[5], result[5];
-void main()
+
+int i = 1, j = 0, no = 0, tmpch = 90;
+
+char str[100], left[15], right[15];
+
+void findopr();
+
+void explore();
+
+void fleft(int);
+
+void fright(int);
+
+struct exp
+
 {
-    FILE *fp1, *fp2;
-    fp1 = fopen("input.txt", "r");
-    fp2 = fopen("output.txt", "w");
-    while (!feof(fp1))
+
+    int pos;
+
+    char op;
+
+} k[15];
+
+void main()
+
+{
+
+    printf("\t\tINTERMEDIATE CODE GENERATION\n\n");
+
+    printf("Enter the Expression :");
+
+    scanf("%s", str);
+
+    printf("The intermediate code:\n");
+
+    findopr();
+
+    explore();
+}
+
+void findopr()
+
+{
+
+    for (i = 0; str[i] != '\0'; i++)
+
+        if (str[i] == ':')
+
+        {
+
+            k[j].pos = i;
+
+            k[j++].op = ':';
+        }
+
+    for (i = 0; str[i] != '\0'; i++)
+
+        if (str[i] == '/')
+
+        {
+
+            k[j].pos = i;
+
+            k[j++].op = '/';
+        }
+
+    for (i = 0; str[i] != '\0'; i++)
+
+        if (str[i] == '*')
+
+        {
+
+            k[j].pos = i;
+
+            k[j++].op = '*';
+        }
+
+    for (i = 0; str[i] != '\0'; i++)
+
+        if (str[i] == '+')
+
+        {
+
+            k[j].pos = i;
+
+            k[j++].op = '+';
+        }
+
+    for (i = 0; str[i] != '\0'; i++)
+
+        if (str[i] == '-')
+
+        {
+
+            k[j].pos = i;
+
+            k[j++].op = '-';
+        }
+}
+
+void explore()
+
+{
+
+    i = 1;
+
+    while (k[i].op != '\0')
+
     {
 
-        fscanf(fp1, "%s%s%s%s", op, arg1, arg2, result);
-        if (strcmp(op, "+") == 0)
-        {
-            fprintf(fp2, "\nMOV R0,%s", arg1);
-            fprintf(fp2, "\nADD R0,%s", arg2);
-            fprintf(fp2, "\nMOV %s,R0", result);
-        }
-        if (strcmp(op, "*") == 0)
-        {
-            fprintf(fp2, "\nMOV R0,%s", arg1);
-            fprintf(fp2, "\nMUL R0,%s", arg2);
-            fprintf(fp2, "\nMOV %s,R0", result);
-        }
-        if (strcmp(op, "-") == 0)
-        {
-            fprintf(fp2, "\nMOV R0,%s", arg1);
-            fprintf(fp2, "\nSUB R0,%s", arg2);
-            fprintf(fp2, "\nMOV %s,R0", result);
-        }
-        if (strcmp(op, "/") == 0)
-        {
-            fprintf(fp2, "\nMOV R0,%s", arg1);
-            fprintf(fp2, "\nDIV R0,%s", arg2);
-            fprintf(fp2, "\nMOV %s,R0", result);
-        }
-        if (strcmp(op, "=") == 0)
-        {
-            fprintf(fp2, "\nMOV R0,%s", arg1);
-            fprintf(fp2, "\nMOV %s,R0", result);
-        }
+        fleft(k[i].pos);
+
+        fright(k[i].pos);
+
+        str[k[i].pos] = tmpch--;
+
+        printf("\t%c := %s%c%s\t\t", str[k[i].pos], left, k[i].op, right);
+
+        printf("\n");
+
+        i++;
     }
-    fclose(fp1);
-    fclose(fp2);
+
+    fright(-1);
+
+    if (no == 0)
+
+    {
+
+        fleft(strlen(str));
+
+        printf("\t%s := %s", right, left);
+
+        exit(0);
+    }
+
+    printf("\t%s := %c", right, str[k[--i].pos]);
+}
+
+void fleft(int x)
+
+{
+
+    int w = 0, flag = 0;
+
+    x--;
+
+    while (x != -1 && str[x] != '+' && str[x] != '*' && str[x] != '=' && str[x] != '\0' && str[x] != '-' && str[x] != '/' && str[x] != ':')
+
+    {
+
+        if (str[x] != '$' && flag == 0)
+
+        {
+
+            left[w++] = str[x];
+
+            left[w] = '\0';
+
+            str[x] = '$';
+
+            flag = 1;
+        }
+
+        x--;
+    }
+}
+
+void fright(int x)
+
+{
+
+    int w = 0, flag = 0;
+
+    x++;
+
+    while (x != -1 && str[x] != '+' && str[x] != '*' && str[x] != '\0' && str[x] != '=' && str[x] != ':' && str[x] != '-' && str[x] != '/')
+
+    {
+
+        if (str[x] != '$' && flag == 0)
+
+        {
+
+            right[w++] = str[x];
+
+            right[w] = '\0';
+
+            str[x] = '$';
+
+            flag = 1;
+        }
+
+        x++;
+    }
 }
